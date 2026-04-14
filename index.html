@@ -680,8 +680,7 @@
       <label for="inp-name">Nombre completo</label>
       <input type="text" id="inp-name" placeholder="Ej: María González Pérez" autocomplete="name">
 
-      <label for="inp-code">Código / Número de lista</label>
-      <input type="text" id="inp-code" placeholder="Ej: 12 o 2024-001">
+
 
       <button class="btn-primary" onclick="startQuiz()">Comenzar simulacro →</button>
       <p class="disclaimer">Una vez iniciado, el temporizador no se puede pausar.</p>
@@ -979,17 +978,17 @@ let current = 0;
 let answers = new Array(TOTAL).fill(-1);
 let timerInterval = null;
 let timeLeft = DURATION;
-let studentName = '', studentCode = '';
+let studentName = '';
 let quizStarted = false;
 
 /* ─── INICIO ─── */
 function startQuiz() {
   const n = document.getElementById('inp-name').value.trim();
-  const c = document.getElementById('inp-code').value.trim();
+  
   if (!n) { alert('Por favor ingresa tu nombre completo.'); return; }
-  if (!c) { alert('Por favor ingresa tu código o número de lista.'); return; }
+  
   studentName = n;
-  studentCode = c;
+  
   document.getElementById('student-tag').textContent = n;
   showScreen('s-quiz');
   renderQuestion();
@@ -1130,8 +1129,8 @@ function calcResults() {
 
   document.getElementById('res-pct').textContent = pct + '%';
   document.getElementById('res-name').textContent = studentName;
-  document.getElementById('res-meta').textContent =
-    `Código: ${studentCode} · Tiempo usado: ${String(elMin).padStart(2,'0')}:${String(elSec).padStart(2,'0')} · Fecha: ${new Date().toLocaleDateString('es-CL')}`;
+ document.getElementById('res-meta').textContent =
+  `Tiempo usado: ${String(elMin).padStart(2,'0')}:${String(elSec).padStart(2,'0')} · Fecha: ${new Date().toLocaleDateString()}`;
   document.getElementById('res-correct').textContent = `${correct} correcta${correct!==1?'s':''}`;
   document.getElementById('res-wrong').textContent = `${wrong} incorrecta${wrong!==1?'s':''}`;
   document.getElementById('res-skip').textContent = `${skip} sin responder`;
